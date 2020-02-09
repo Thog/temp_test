@@ -24,6 +24,3 @@ release.assets.forEach(asset => {
 });
 
 fs.writeFileSync(release.name + ".json", JSON.stringify(result, null, 2))
-
-
-console.log(result)
