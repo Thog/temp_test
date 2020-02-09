@@ -6,8 +6,26 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - run: cat $GITHUB_EVENT_PATH
+    - name: "Checkout"
+      uses: actions/checkout@v2
+
+    - name: "Setup NodeJS"
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: "Handle release event"
+      run: node index.js
+
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Update release metadata" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
