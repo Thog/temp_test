@@ -17,8 +17,12 @@ jobs:
       with:
         node-version: '12.x'
 
+    - name: Print GITHUB_EVENT
+      run: |
+        cat $GITHUB_EVENT_PATH
+
     - name: "Handle release event"
-      run: node index.js
+      run: python3 update_release.py
 
     - name: Commit files
       run: |
