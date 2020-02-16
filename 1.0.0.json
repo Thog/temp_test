@@ -3,50 +3,50 @@
         {
             "arch": "x64",
             "buildType": "release",
-            "fileHash": "9cb52fd8e2584ac0c609a07a00f287cc109f5a44d139a99d8e79b2292b8cac67",
+            "fileHash": "d57c8bcd47e6926039e3d2674f107e77788d1f9d6c714379073394cb4bedd04a",
             "fileName": "ryujinx-1.0.0-osx_x64.zip",
             "os": "macOSX",
-            "url": "https://github.com/Thog/temp_test/releases/download/build-408d1287f28d2833fc7f1053bf475db60fa61f64/ryujinx-1.0.0-osx_x64.zip"
+            "url": "https://github.com/Thog/temp_test/releases/download/build-725ccec542c455dbe448eb88f839896b97959ad9/ryujinx-1.0.0-osx_x64.zip"
         },
         {
             "arch": "x64",
             "buildType": "profileRelease",
-            "fileHash": "4eb0c35169f6f34b2f36fae7246ec5a9ec65dde897cb96e5a46dac8c3bd906b7",
+            "fileHash": "2c06fdfebfa6ed11bec83ef17db98680b6a8658be8effe7ba4fa4803458f60d9",
             "fileName": "ryujinx-profiled-1.0.0-win_x64.zip",
             "os": "windows",
-            "url": "https://github.com/Thog/temp_test/releases/download/build-408d1287f28d2833fc7f1053bf475db60fa61f64/ryujinx-profiled-1.0.0-win_x64.zip"
+            "url": "https://github.com/Thog/temp_test/releases/download/build-725ccec542c455dbe448eb88f839896b97959ad9/ryujinx-profiled-1.0.0-win_x64.zip"
         },
         {
             "arch": "x64",
             "buildType": "release",
-            "fileHash": "bd299259458c72212f31d32321dcedbc4e2a45cc07d3f83b90e4c3c374b3421f",
+            "fileHash": "2edacd57806fd5af137c49d5a99068de2e2a95bc211fb7ebcb8c00e67fad2468",
             "fileName": "ryujinx-1.0.0-linux_x64.zip",
             "os": "linux",
-            "url": "https://github.com/Thog/temp_test/releases/download/build-408d1287f28d2833fc7f1053bf475db60fa61f64/ryujinx-1.0.0-linux_x64.zip"
+            "url": "https://github.com/Thog/temp_test/releases/download/build-725ccec542c455dbe448eb88f839896b97959ad9/ryujinx-1.0.0-linux_x64.zip"
         },
         {
             "arch": "x64",
             "buildType": "profileRelease",
-            "fileHash": "f4dc73dc77677c35e7378147dee3a0533ee10c9dca3096e36531214b0e816457",
+            "fileHash": "6939f815e802b56c0e68bbdb6ed80798576b0825454f4e14fb6c9aa9f80cec0b",
             "fileName": "ryujinx-profiled-1.0.0-linux_x64.zip",
             "os": "linux",
-            "url": "https://github.com/Thog/temp_test/releases/download/build-408d1287f28d2833fc7f1053bf475db60fa61f64/ryujinx-profiled-1.0.0-linux_x64.zip"
+            "url": "https://github.com/Thog/temp_test/releases/download/build-725ccec542c455dbe448eb88f839896b97959ad9/ryujinx-profiled-1.0.0-linux_x64.zip"
         },
         {
             "arch": "x64",
             "buildType": "release",
-            "fileHash": "31aee4601a661ca111beb8165470574b5933bc94434e650758268aa4c7183c33",
+            "fileHash": "78d94d1c0ffa3946fc26f2dec987fd77b8416e4cb836c9487b1fc30a93950543",
             "fileName": "ryujinx-1.0.0-win_x64.zip",
             "os": "windows",
-            "url": "https://github.com/Thog/temp_test/releases/download/build-408d1287f28d2833fc7f1053bf475db60fa61f64/ryujinx-1.0.0-win_x64.zip"
+            "url": "https://github.com/Thog/temp_test/releases/download/build-725ccec542c455dbe448eb88f839896b97959ad9/ryujinx-1.0.0-win_x64.zip"
         },
         {
             "arch": "x64",
             "buildType": "profileRelease",
-            "fileHash": "7277c7e3df3cda0f698274240b874b8273d01133fbcc08057474abc415c8e8cd",
+            "fileHash": "805b53d12fe4ef3437cc222e11b14a14b0bc48cd0895141349f3b96505b9039b",
             "fileName": "ryujinx-profiled-1.0.0-osx_x64.zip",
             "os": "macOSX",
-            "url": "https://github.com/Thog/temp_test/releases/download/build-408d1287f28d2833fc7f1053bf475db60fa61f64/ryujinx-profiled-1.0.0-osx_x64.zip"
+            "url": "https://github.com/Thog/temp_test/releases/download/build-725ccec542c455dbe448eb88f839896b97959ad9/ryujinx-profiled-1.0.0-osx_x64.zip"
         }
     ],
     "version": "1.0.0"
