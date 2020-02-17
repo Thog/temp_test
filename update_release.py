@@ -29,13 +29,13 @@ if release_info_asset == None:
 release_info_asset_data = request.urlopen(release_info_asset['browser_download_url']).read()
 release_info_asset_parsed = json.loads(release_info_asset_data)
 
-# Add URL to all artefacts
-for artefact in release_info_asset_parsed['artefacts']:
-    artefact_asset = get_asset_by_name(artefact['fileName'])
-    if artefact_asset == None:
-        print("%s couldn't be found on the published release" % artefact['fileName'])
+# Add URL to all artifacts
+for artifact in release_info_asset_parsed['artifacts']:
+    artifact_asset = get_asset_by_name(artifact['fileName'])
+    if artifact_asset == None:
+        print("%s couldn't be found on the published release" % artifact['fileName'])
         exit(1)
-    artefact['url'] = artefact_asset['browser_download_url']
+    artifact['url'] = artifact_asset['browser_download_url']
 
 
 with open("latest.json", "w") as f:
