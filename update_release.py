@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import json
+import re
 import os
+import sys
 from urllib import request
 
 
@@ -20,26 +22,73 @@ def get_asset_by_name(name):
             return asset
     return None
 
-release_info_asset = get_asset_by_name('release_information.json')
+def get_assets_by_pattern(pattern):
+    result = []
+    for asset in event_data['release']['assets']:
+        regex_result = re.search(pattern, asset['name'])
+        if regex_result:
+            result.append(asset)
 
-if release_info_asset == None:
-    print("release_information.json couldn't be found on the published release")
-    exit(1)
+    return result
 
-release_info_asset_data = request.urlopen(release_info_asset['browser_download_url']).read()
-release_info_asset_parsed = json.loads(release_info_asset_data)
+def convert_release_to_build_type(release_type):
+    if release_type in ['release', 'debug']:
+        return release_type
+    
+    # TODO: legacy, remove
+    if release_type == 'profiled':
+        release_type = 'profile release'
+    
+    if release_type in ['profile release', 'profile debug']:
+        release_type_part = release_type.split(' ')[1].capitalize()
 
-# Add URL to all artifacts
-for artifact in release_info_asset_parsed['artifacts']:
-    artifact_asset = get_asset_by_name(artifact['fileName'])
-    if artifact_asset == None:
-        print("%s couldn't be found on the published release" % artifact['fileName'])
-        exit(1)
-    artifact['url'] = artifact_asset['browser_download_url']
+        return 'profile' + release_type_part
+    
+    return 'unknown'
 
+def construct_artefact_info(asset):
+    file_name = os.path.basename(asset['name'])
+
+    file_name_without_ext = os.path.splitext(file_name)[0]
+
+
+    sha256sum_file_asset = get_asset_by_name(file_name_without_ext + '.sha256')
+
+    raw_part = file_name_without_ext.split('-')[1:]
+
+    if len(raw_part) < 4:
+        return None
+
+    release_type = raw_part[0].lower()
+    target_os = raw_part[2]
+    target_arch = raw_part[3]
+
+    if sha256sum_file_asset is not None:
+        sha256sum_file_content = request.urlopen(sha256sum_file_asset['browser_download_url']).read().strip().decode('utf-8')
+        sha256sum = sha256sum_file_content.split(' ')[1]
+    else:
+        sha256sum = None
+
+    return {'arch': target_arch, 'buildType': convert_release_to_build_type(release_type), 'fileName': file_name, 'fileHash': sha256sum, 'os': target_os, 'url': asset['browser_download_url']}
+
+artifacts = []
+
+for asset in get_assets_by_pattern("(.*).zip"):
+    res = construct_artefact_info(asset)
+
+    if res is None:
+        print("%s got rejected, aborting!" % asset['name'])
+        sys.exit(1)
+    artifacts.append(res)
+
+if len(artifacts) == 0:
+    print('No artifacts in release, aborting!')
+    sys.exit(1)
+
+release_info = { 'version': event_data['release']['name'], 'artifacts': artifacts }
 
 with open("latest.json", "w") as f:
-    f.write(json.dumps(release_info_asset_parsed, sort_keys=True, indent=4))
+    f.write(json.dumps(release_info, sort_keys=True, indent=4))
 
-with open(release_info_asset_parsed['version'] + ".json", "w") as f:
-    f.write(json.dumps(release_info_asset_parsed, sort_keys=True, indent=4))
+with open(release_info['version'] + ".json", "w") as f:
+    f.write(json.dumps(release_info, sort_keys=True, indent=4))
